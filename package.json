@@ -1,0 +1,13 @@
+{
+  "name": "github-markdown-syntax",
+  "version": "0.1.0",
+  "description": "An easy way to syntax highlight any language supported by GitHub into HTML.",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "got": "^8.3.0"
+  },
+  "repository": "https://github.com/coolreader18/github-markdown-syntax",
+  "author": "coolreader18"
+}
