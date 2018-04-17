@@ -1,7 +1,7 @@
 const got = require("got");
 const cheerio = require("cheerio");
 
-module.exports = async function GFMSyntax(snippets) {
+module.exports = async function GFMSyntax(snippets, token) {
   let datas = snippets
     .reduce(
       (arr, { code, lang }) => {
@@ -23,13 +23,15 @@ ${"`".repeat(10)}
       [""]
     )
     .map(cur => cur.trim());
-  console.log(Buffer.from(datas[0]).byteLength);
   let html = await Promise.all(
     datas.map(cur =>
       got
         .post("https://api.github.com/markdown/raw", {
           body: cur,
-          headers: { "Content-Type": "text/plain" }
+          headers: {
+            "Content-Type": "text/plain",
+            ...(token ? { Authorization: `token ${token}` } : {})
+          }
         })
         .then(r => r.body)
     )
