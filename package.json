@@ -1,6 +1,6 @@
 {
   "name": "github-markdown-syntax",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An easy way to syntax highlight any language supported by GitHub into HTML.",
   "main": "index.js",
   "license": "MIT",
