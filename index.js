@@ -28,18 +28,19 @@ ${backticks}
           [""]
         )
         .map(cur => cur.trim());
+      const gotOpts = {
+        body: cur,
+        headers: {
+          "Content-Type": "text/plain"
+        }
+      };
+      if (token) gotOpts.headers.Authorization = `token ${token}`;
       return Promise.all(
-        datas.map(cur =>
-          got
-            .post("https://api.github.com/markdown/raw", {
-              body: cur,
-              headers: {
-                "Content-Type": "text/plain",
-                ...(token ? { Authorization: `token ${token}` } : {})
-              }
-            })
-            .then(r => r.body)
-        )
+        datas.map(cur => {
+          return got
+            .post("https://api.github.com/markdown/raw", gotOpts)
+            .then(r => r.body);
+        })
       );
     })
     .then(html => {
