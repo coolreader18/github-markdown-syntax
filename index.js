@@ -5,14 +5,17 @@ module.exports = async function GFMSyntax(snippets, token) {
   let datas = snippets
     .reduce(
       (arr, { code, lang }) => {
-        if (!code || !lang)
-          throw new Error("Missing code or language for snippet");
-        let file = arr.slice(-1)[0];
-        let md = `${"`".repeat(10)}${lang}
+        if (typeof code !== "string")
+          throw new Error(
+            "Missing code snippet or code snippet is not a string"
+          );
+        const file = arr.slice(-1)[0];
+        const backticks = "`".repeat(10);
+        const md = `${backticks}${lang != null ? lang : ""}
 ${code}
-${"`".repeat(10)}
+${backticks}
 `;
-        let newFile = file + md;
+        const newFile = file + md;
         if (Buffer.from(newFile).byteLength > 400000) {
           arr.push(md);
         } else {
