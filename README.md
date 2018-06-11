@@ -59,4 +59,4 @@ exit
 ```
 
 ## License
-This project is licensed under the MIT license. For more information, see the LICENSE file.
+This project is licensed under the MIT license. For more information, see the [LICENSE](LICENSE) file.
